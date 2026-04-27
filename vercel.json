@@ -4,4 +4,3 @@
               { "path": "/api/cron/proactive", "schedule": "0 * * * *" }
                 ]
                 }
-}
