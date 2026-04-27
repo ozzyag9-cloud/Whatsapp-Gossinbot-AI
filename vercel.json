@@ -1,6 +1,7 @@
 {
-      "crons": [
-          { "path": "/api/cron/warroom", "schedule": "0 9,18 * * *" },
-              { "path": "/api/cron/proactive", "schedule": "0 * * * *" }
-                ]
-                }
+  "functions": {
+    "pages/api/webhook.js": {
+      "maxDuration": 60
+    }
+  }
+}
