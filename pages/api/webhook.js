@@ -1,7 +1,5 @@
-import { brain } from "../../packages/core/brain.js";
-
 export default async function handler(req, res) {
-  // GET for Meta webhook verification
+  // Webhook verification for Meta
   if (req.method === 'GET') {
     const mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
@@ -14,18 +12,9 @@ export default async function handler(req, res) {
     return res.status(403).send('Forbidden');
   }
 
-  // POST for incoming WhatsApp messages
+  // Handle incoming messages
   if (req.method === 'POST') {
-    const body = req.body;
-    const entry = body.entry?.[0]?.changes?.[0]?.value;
-    const msg = entry?.messages?.[0];
-    
-    if (msg && msg.from) {
-      const from = msg.from;
-      const text = msg.text?.body || msg.interactive?.button_reply?.id || '';
-      console.log(`Message from ${from}: ${text}`);
-      await brain({ from, text });
-    }
+    console.log("Webhook received:", JSON.stringify(req.body));
     return res.status(200).send('EVENT_RECEIVED');
   }
   
