@@ -1,0 +1,35 @@
+{
+  "name": "whatsapp-gossinbot-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ozzyag9-cloud/Whatsapp-Gossinbot-AI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ozzyag9-cloud/Whatsapp-Gossinbot-AI/issues"
+  },
+  "homepage": "https://github.com/ozzyag9-cloud/Whatsapp-Gossinbot-AI#readme",
+  "dependencies": {
+    "@prisma/client": "^7.8.0",
+    "next": "^14.2.35",
+    "openai": "^6.34.0",
+    "react-dom": "^18.3.1",
+    "rss-parser": "^3.13.0",
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^7.8.0"
+  }
+}
