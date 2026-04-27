@@ -1,0 +1,7 @@
+{
+      "crons": [
+          { "path": "/api/cron/warroom", "schedule": "0 9,18 * * *" },
+              { "path": "/api/cron/proactive", "schedule": "0 * * * *" }
+                ]
+                }
+}

@@ -1,0 +1,101 @@
+generator client {
+      provider = "prisma-client-js"
+}
+
+datasource db {
+      provider = "postgresql"
+        url = env("DATABASE_URL")
+}
+
+model User {
+      id String @id @default(cuid())
+        phone String @unique
+          voiceEnabled Boolean @default(true)
+            newsTopics String[] @default(["business", "mauritius"])
+              lastPinId String?
+                createdAt DateTime @default(now())
+                  goals Goal[]
+                    dealLogs DealLog[]
+                      userTools UserTool[]
+}
+
+model Goal {
+      id String @id @default(cuid())
+        userId String
+          title String
+            status String @default("active")
+              createdAt DateTime @default(now())
+                steps Step[]
+                  user User @relation(fields: [userId], references: [id])
+}
+
+model Step {
+      id String @id @default(cuid())
+        goalId String
+          content String
+            status String @default("pending")
+              order Int
+                goal Goal @relation(fields: [goalId], references: [id])
+}
+
+model Agent {
+      id String @id @default(cuid())
+        slug String @unique
+          authorId String
+            name String
+              description String
+                price Int @default(0)
+                  type String
+                    config Json
+                      installs Int @default(0)
+                        status String @default("pending")
+                          userTools UserTool[]
+}
+
+model UserTool {
+      id String @id @default(cuid())
+        userId String
+          agentId String
+            user User @relation(fields: [userId], references: [id])
+              agent Agent @relation(fields: [agentId], references: [id])
+}
+
+model DealLog {
+      id String @id @default(cuid())
+        userId String
+          vendor String
+            amount Float
+              currency String @default("MUR")
+                items Json
+                  terms String?
+                    verdict String
+                      createdAt DateTime @default(now())
+                        user User @relation(fields: [userId], references: [id])
+}
+
+model NewsLog {
+      id String @id @default(cuid())
+        userId String
+          headline String
+            source String
+              sentAt DateTime @default(now())
+}
+
+model Purchase {
+      id String @id @default(cuid())
+        userId String
+          agentId String
+            amount Int
+              fee Int
+                createdAt DateTime @default(now())
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
